@@ -4,8 +4,6 @@ import cards from "./data/cards.json"
 import type { TCardList, TCard } from "./types/card.types"
 
 const App = () => {
-  	const [gameCards, setGameCards] = useState<TCardList>(cards)
-	console.log(gameCards);
 
 	const handleCardClick = (clickedCard: TCard) => {
 		// Flip the card
@@ -15,6 +13,24 @@ const App = () => {
 			)
 		)
 	}
+
+	// Create pairs of cards
+	const createGameCards = (): TCardList => {
+		const pairs = cards.flatMap((card) => [
+			{ ...card, id: card.id },
+			{ ...card, id: card.id + 100 },
+		])
+		return pairs
+	}
+	const shuffleCards = (cards: TCardList): TCardList => {
+    	return cards.sort(() => Math.random() - 0.5)
+  	}
+
+	const [gameCards, setGameCards] = useState<TCardList>(
+		shuffleCards(createGameCards()) 
+	)	
+	console.log(gameCards);
+
 	return (
 		<div className="main_section">
 		<h1>Memory Game</h1>
