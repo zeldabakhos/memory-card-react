@@ -13,13 +13,14 @@ const CardComp = ({ clickProp, card }: TCardProps) => {
 	}
 
 	return (
-		<article
-			onClick={handleClick}
-			className={`${styles.card} ${card.flipped ? styles.animate__rotate : ""}`}
-		>
-			CardComp
-		</article>
+	<article
+		onClick={handleClick}
+		className={`${styles.card} ${card.flipped ? styles.animate__rotate : ""}`}
+	>
+		<img src={`./imgs/${card.image}`} alt={card.name} />
+	</article>
 	)
+
 }
 
 export default CardComp
