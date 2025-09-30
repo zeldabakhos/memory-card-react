@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import CardComp from "./components/CardComp"
 import cards from "./data/cards.json"
 import type { TCardList, TCard } from "./types/card.types"
+import ModalComp from "./components/ModalComp"
 
 const App = () => {
 
@@ -28,6 +29,9 @@ const App = () => {
 
 	const [matches, setMatches] = useState(0)
 	
+	// game state
+	const [gameOver, setGameOver] = useState(false)
+
 	const handleCardClick = (clickedCard: TCard) => {
 		// Check if the card is already matched
 		if (clickedCard.matched) return
@@ -99,6 +103,7 @@ const App = () => {
 				)
 			})}
 			</div>
+				<ModalComp showModal={gameOver} toggleModal={setGameOver} />
 		</div>
 		)
 	};
